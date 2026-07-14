@@ -33,7 +33,7 @@
     THIS SOFTWARE.
 */
 #include "mcc_generated_files/system/system.h"
-#include "LCD.c"
+#include "LCD.h"
 
 /*
     Main application
@@ -61,12 +61,9 @@ int main(void)
     __delay_ms(1000);
 
     LCD_baslat ();
-//    LCD_gonder('A', 0x1);
-//    LCD_gonder('B', 0x1);
+
     lcd_mesajyaz(1, 1 , "Merhaba");
-//    I2C_gonder(0x8);
   
-    
 
     while(1)
     {
