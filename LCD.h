@@ -5,6 +5,8 @@
  * Created on March 29, 2026, 1:48 PM
  */
 
+#include <stdint.h>
+
 #ifndef LCD_H
 #define	LCD_H
 
