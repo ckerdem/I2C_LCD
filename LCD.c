@@ -1,7 +1,11 @@
 
 #include "LCD.h"
-//#include "mcc_generated_files\i2c_host/mssp1.h"
-//#include "mcc_generated_files\i2c_host\src/mssp1.c"
+#include <stdint.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <xc.h>
+#include "mcc_generated_files\i2c_host/mssp1.h"
+#include "mcc_generated_files\i2c_host\src/mssp1.c"
 	
 #define LCD_adres 0x27
 #define LCD_RS 1U
