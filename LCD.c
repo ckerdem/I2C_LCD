@@ -4,8 +4,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <xc.h>
+
+#include "mcc_generated_files/system/system.h"
 #include "mcc_generated_files\i2c_host/mssp1.h"
-#include "mcc_generated_files\i2c_host\src/mssp1.c"
+
 	
 #define LCD_adres 0x27
 #define LCD_RS 1U
@@ -22,16 +24,16 @@
         __delay_ms(5);
         }
     /*
-     LCD'ye veri gönderir. Kumut için RS=0, yazı için RS=LCD_RS olmalıdır.
+     LCD'ye veri g�nderir. Kumut i�in RS=0, yazi i�in RS=LCD_RS olmalidir.
      */
     void LCD_gonder(uint8_t bilgi, uint8_t RS){
-        I2C_gonder((bilgi & 0xF0) | RS);        //Üst 4 bit
+        I2C_gonder((bilgi & 0xF0) | RS);        //�st 4 bit
         I2C_gonder(((bilgi << 4) & 0xF0) | RS); //Alt 4 bit
     }
     
     
     
-    /*  LCD ekranı başlatır. Önce bu fonksiyon çağrılmalıdır.  */
+    /*  LCD ekrani baslatir. �nce bu fonksiyon �airslmalidir.  */
     void LCD_baslat(void){
         __delay_ms(50); 
         I2C_gonder(0x30);
@@ -49,7 +51,7 @@
     }
     
     
-    /*	 İmleçi verilen satır sütun numarasına götürür  */
+    /*	 Imle�i verilen satir s�tun numarasina g�t�r�r  */
 
 void lcd_git(uint8_t satir, uint8_t sutun) {
     uint8_t temp;
@@ -64,7 +66,7 @@ void lcd_git(uint8_t satir, uint8_t sutun) {
     LCD_gonder(temp, 0x00);
 }
 
- /*	Verilen satır sütun numarasından başlayarak ekrana mesaj yazar*/
+ /*	Verilen satir s�tun numarasindan baslayarak ekrana mesaj yazar*/
  
 void lcd_mesajyaz(uint8_t satir, uint8_t sutun, const char *mesaj) {
 	lcd_git(satir, sutun);
@@ -73,3 +75,4 @@ void lcd_mesajyaz(uint8_t satir, uint8_t sutun, const char *mesaj) {
         __delay_us(200);
     } while (*mesaj);
 }
+
